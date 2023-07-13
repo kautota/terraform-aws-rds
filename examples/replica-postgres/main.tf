@@ -1,12 +1,17 @@
+variable "access_key" {}
+variable "secret_key" {}
+
 provider "aws" {
   region = local.region
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 
 data "aws_availability_zones" "available" {}
 
 locals {
-  name   = "replica-postgresql"
-  region = "eu-west-1"
+  name   = "kt-test-postgresql"
+  region = "us-west-2"
 
   vpc_cidr = "10.0.0.0/16"
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
@@ -21,7 +26,7 @@ locals {
   engine_version        = "14"
   family                = "postgres14" # DB parameter group
   major_engine_version  = "14"         # DB option group
-  instance_class        = "db.t4g.large"
+  instance_class        = "db.t3.micro"
   allocated_storage     = 20
   max_allocated_storage = 100
   port                  = 5432
@@ -45,8 +50,8 @@ module "master" {
   allocated_storage     = local.allocated_storage
   max_allocated_storage = local.max_allocated_storage
 
-  db_name  = "replicaPostgresql"
-  username = "replica_postgresql"
+  db_name  = "kttestdb"
+  username = "kttestdbuser"
   port     = local.port
 
   password = "UberSecretPassword"

@@ -25,7 +25,7 @@ variable "description" {
 variable "family" {
   description = "The family of the DB parameter group"
   type        = string
-  default     = null
+  default     = "postgres14"
 }
 
 variable "parameters" {

@@ -89,7 +89,7 @@ variable "domain_iam_role_name" {
 variable "engine" {
   description = "The database engine to use"
   type        = string
-  default     = null
+  default     = "postgres"
 }
 
 variable "engine_version" {
@@ -113,7 +113,7 @@ variable "db_name" {
 variable "username" {
   description = "Username for the master DB user"
   type        = string
-  default     = null
+  default     = "db-admin"
 }
 
 variable "password" {
