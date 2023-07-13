@@ -10,7 +10,7 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  name   = "kt-test-postgresql"
+  name   = "kt-test-postgresql-v2"
   region = "us-west-2"
 
   vpc_cidr = "10.0.0.0/16"
