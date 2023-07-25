@@ -81,6 +81,7 @@ output "master_db_instance_cloudwatch_log_groups" {
 }
 
 # Replica
+/*
 output "replica_db_instance_address" {
   description = "The address of the RDS instance"
   value       = module.replica.db_instance_address
@@ -151,3 +152,4 @@ output "replica_db_instance_cloudwatch_log_groups" {
   description = "Map of CloudWatch log groups created and their attributes"
   value       = module.replica.db_instance_cloudwatch_log_groups
 }
+*/
