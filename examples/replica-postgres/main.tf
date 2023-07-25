@@ -82,7 +82,7 @@ module "master" {
 
 # create db user for master db
 provider "postgresql" {
-  host     = module.master.db_instance_endpoint
+  host     = module.master.db_instance_address
   port     = 5432
   database = "postgres"
   username = module.master.db_instance_username

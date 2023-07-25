@@ -94,7 +94,7 @@ output "password" {
 
 output "host" {
   description = "The connection endpoint (for Humanitec)"
-  value       = module.master.db_instance_endpoint
+  value       = module.master.db_instance_address
 }
 
 output "name" {
