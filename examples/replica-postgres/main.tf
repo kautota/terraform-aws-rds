@@ -10,8 +10,9 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  name   = "kt-test-postgresql-v5"
+  name   = "kt-test-postgresql-v6"
   region = "us-west-2"
+  password = "UberSecretPassword"
 
   vpc_cidr = "10.0.0.0/16"
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
@@ -77,6 +78,27 @@ module "master" {
   publicly_accessible = true
 
   tags = local.tags
+}
+
+# create db user for master db
+provider "postgresql" {
+  host     = module.master.db_instance_endpoint
+  port     = 5432
+  database = "postgres"
+  username = module.master.db_instance_username
+  password = local.password
+
+  superuser = false
+}
+
+resource "postgresql_role" "admin" {
+  name            = "admin"
+  login           = true
+  password        = "mypass"
+  create_database = true
+  roles = [
+    "rds_superuser",
+  ]
 }
 
 ################################################################################

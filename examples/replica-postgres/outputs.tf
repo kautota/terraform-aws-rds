@@ -80,6 +80,31 @@ output "master_db_instance_cloudwatch_log_groups" {
   value       = module.master.db_instance_cloudwatch_log_groups
 }
 
+output "username" {
+  description = "Username of db user created while provisioning master db (for Humanitec)"
+  value = postgresql_role.admin.name
+  sensitive = true
+}
+
+output "password" {
+  description = "Password of db user created while provisioning master db (for Humanitec)"
+  value = postgresql_role.admin.password
+  sensitive = true
+}
+
+output "host" {
+  description = "The connection endpoint (for Humanitec)"
+  value       = module.master.db_instance_endpoint
+}
+
+output "name" {
+  value = "postgres"
+}
+
+output "port" {
+  value = 5432
+}
+
 # Replica
 /*
 output "replica_db_instance_address" {
