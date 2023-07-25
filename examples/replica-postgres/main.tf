@@ -10,7 +10,7 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  name   = "kt-test-postgresql-v3"
+  name   = "kt-test-postgresql-v4"
   region = "us-west-2"
 
   vpc_cidr = "10.0.0.0/16"
@@ -59,7 +59,9 @@ module "master" {
   manage_master_user_password = false
 
   multi_az               = true
-  db_subnet_group_name   = module.vpc.database_subnet_group_name
+  # db_subnet_group_name   = module.vpc.public_subnet_group_name
+  create_db_subnet_group = true
+  subnet_ids             = module.vpc.public_subnets
   vpc_security_group_ids = [module.security_group.security_group_id]
 
   maintenance_window              = "Mon:00:00-Mon:03:00"
@@ -72,6 +74,8 @@ module "master" {
   deletion_protection     = false
   storage_encrypted       = false
 
+  publicly_accessible = true
+
   tags = local.tags
 }
 
@@ -79,6 +83,7 @@ module "master" {
 # Replica DB
 ################################################################################
 
+/*
 module "replica" {
   source = "../../"
 
@@ -112,6 +117,7 @@ module "replica" {
 
   tags = local.tags
 }
+*/
 
 ################################################################################
 # Supporting Resources
@@ -161,7 +167,7 @@ module "security_group" {
       to_port     = 5432
       protocol    = "tcp"
       description = "PostgreSQL access from within VPC"
-      cidr_blocks = module.vpc.vpc_cidr_block
+      cidr_blocks = "0.0.0.0/0"
     },
   ]
 
