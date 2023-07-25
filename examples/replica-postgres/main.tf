@@ -10,7 +10,7 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  name   = "kt-test-postgresql-v2"
+  name   = "kt-test-postgresql-v3"
   region = "us-west-2"
 
   vpc_cidr = "10.0.0.0/16"
@@ -133,6 +133,18 @@ module "vpc" {
 
   tags = local.tags
 }
+
+/*module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
+  version = "~> 5.0"
+
+  name = local.name
+  cidr = local.vpc_cidr
+
+  azs = local.azs
+  private_subnets = ["subnet-0aeaaaa3d1bc347de", "subnet-0323b90cdd162f97f", "subnet-078ce2dc5657057e6", "subnet-0da1c4acbe1b52b6a", "subnet-0ff8274862b82e8d8", "subnet-00e619fc5812b2342"]
+
+}*/
 
 module "security_group" {
   source  = "terraform-aws-modules/security-group/aws"
