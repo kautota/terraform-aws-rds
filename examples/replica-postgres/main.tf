@@ -10,7 +10,7 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  name   = "kt-test-postgresql-v6"
+  name   = "kt-test-postgresql-v5"
   region = "us-west-2"
   password = "UberSecretPassword"
 
