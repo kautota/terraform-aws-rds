@@ -1,5 +1,6 @@
 variable "access_key" {}
 variable "secret_key" {}
+variable "db_name_input" {}
 
 provider "aws" {
   region = local.region
@@ -10,7 +11,7 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  name   = "kt-test-postgresql-v5"
+  name   = var.db_name_input
   region = "us-west-2"
   password = "UberSecretPassword"
 
