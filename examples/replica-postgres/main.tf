@@ -60,7 +60,7 @@ module "master" {
   manage_master_user_password = false
 
   multi_az               = true
-  # db_subnet_group_name   = module.vpc.public_subnet_group_name
+  # db_subnet_group_name   = module.vpc.database_subnet_group_name
   create_db_subnet_group = true
   subnet_ids             = module.vpc.public_subnets
   vpc_security_group_ids = [module.security_group.security_group_id]
