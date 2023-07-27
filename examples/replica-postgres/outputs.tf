@@ -105,6 +105,11 @@ output "port" {
   value = 5432
 }
 
+output "user" {
+  description = "User that is outputted by RDS (for Humanitec)"
+  value = "arn:aws:rds-db:us-east-2:1234567890:dbuser:db-ABCDEFGHIJKL01234/db_user"
+}
+
 # Replica
 /*
 output "replica_db_instance_address" {
