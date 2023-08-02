@@ -107,7 +107,7 @@ output "port" {
 
 output "user" {
   description = "User that is outputted by RDS (for Humanitec)"
-  value = "arn:aws:rds-db:us-east-2:1234567890:dbuser:db-ABCDEFGHIJKL01234/db_user"
+  value = "arn:aws:rds-db:us-west-2:278581741526:dbuser:${module.master.db_instance_resource_id}/admin"
 }
 
 # Replica
