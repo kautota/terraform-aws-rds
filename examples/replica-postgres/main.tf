@@ -60,6 +60,8 @@ module "master" {
   # Not supported with replicas
   manage_master_user_password = false
 
+  iam_database_authentication_enabled = true
+
   multi_az               = true
   # db_subnet_group_name   = module.vpc.database_subnet_group_name
   create_db_subnet_group = true
@@ -98,7 +100,17 @@ resource "postgresql_role" "admin" {
   password        = "mypass"
   create_database = true
   roles = [
-    "rds_superuser",
+    "rds_superuser", "rds_iam"
+  ]
+}
+
+resource "postgresql_role" "iam_admin" {
+  name            = "iam_admin"
+  login           = true
+  password        = "mypass"
+  create_database = true
+  roles = [
+    "rds_superuser", "rds_iam"
   ]
 }
 
