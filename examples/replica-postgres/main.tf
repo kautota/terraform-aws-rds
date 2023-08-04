@@ -95,7 +95,7 @@ provider "postgresql" {
 }
 
 resource "postgresql_role" "admin_iam" {
-  name            = "admin"
+  name            = "admin_iam"
   login           = true
   password        = "mypass"
   create_database = true
