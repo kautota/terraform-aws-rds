@@ -94,7 +94,7 @@ provider "postgresql" {
   superuser = false
 }
 
-resource "postgresql_role" "admin" {
+resource "postgresql_role" "admin_iam" {
   name            = "admin"
   login           = true
   password        = "mypass"
@@ -104,13 +104,13 @@ resource "postgresql_role" "admin" {
   ]
 }
 
-resource "postgresql_role" "iam_admin" {
-  name            = "iam_admin"
+resource "postgresql_role" "admin_pw_only" {
+  name            = "admin_pw_only"
   login           = true
   password        = "mypass"
   create_database = true
   roles = [
-    "rds_superuser", "rds_iam"
+    "rds_superuser"
   ]
 }
 

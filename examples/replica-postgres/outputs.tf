@@ -82,13 +82,13 @@ output "master_db_instance_cloudwatch_log_groups" {
 
 output "username" {
   description = "Username of db user created while provisioning master db (for Humanitec)"
-  value = postgresql_role.admin.name
+  value = postgresql_role.admin_pw_only.name
   sensitive = true
 }
 
 output "password" {
   description = "Password of db user created while provisioning master db (for Humanitec)"
-  value = postgresql_role.admin.password
+  value = postgresql_role.admin_pw_only.password
   sensitive = true
 }
 
@@ -107,7 +107,7 @@ output "port" {
 
 output "user" {
   description = "User that is outputted by RDS (for Humanitec)"
-  value = "arn:aws:rds-db:us-west-2:278581741526:dbuser:${module.master.db_instance_resource_id}/admin"
+  value = "arn:aws:rds-db:us-west-2:278581741526:dbuser:${module.master.db_instance_resource_id}/admin_iam"
 }
 
 # Replica
