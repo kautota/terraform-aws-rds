@@ -10,8 +10,15 @@ provider "aws" {
 
 data "aws_availability_zones" "available" {}
 
+resource "random_string" "randomized_db_name" {
+  length = 8
+  special = false
+  upper = false
+}
+
 locals {
-  name   = var.db_name_input
+  # name   = var.db_name_input
+  name = "db-${random_string.randomized_db_name.result}"
   region = "us-west-2"
   password = "UberSecretPassword"
 
