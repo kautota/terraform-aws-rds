@@ -1,6 +1,6 @@
 variable "access_key" {}
 variable "secret_key" {}
-variable "db_name_input" {}
+# variable "db_name_input" {}
 
 provider "aws" {
   region = local.region
