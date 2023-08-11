@@ -1,6 +1,6 @@
 variable "access_key" {}
 variable "secret_key" {}
-# variable "db_name_input" {}
+variable "db_name_input" {}
 
 provider "aws" {
   region = local.region
@@ -18,7 +18,7 @@ resource "random_string" "randomized_db_name" {
 
 locals {
   # name   = var.db_name_input
-  name = "db-${random_string.randomized_db_name.result}"
+  name = "db-${random_string.randomized_db_name.result}-${var.db_name_input}"
   region = "us-west-2"
   password = "UberSecretPassword"
 
